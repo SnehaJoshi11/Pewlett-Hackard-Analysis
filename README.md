@@ -73,7 +73,7 @@ To retrieve the data we need to join/merge two tables.`'employee as e and title 
 - We use `INNER JOIN title as ti`, `ON(e.emp_no=ti.emp_no)` and filtered with 'birth_date', to find out who is going to retire in few years.
 - With where clause`(e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')`.
 	
- </p> <br>
+ </p>
 
 ## 
   
