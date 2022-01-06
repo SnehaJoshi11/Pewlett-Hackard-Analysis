@@ -80,34 +80,35 @@ SELECT * FROM mentorship_eligibilty;
 -----------------------------------------------------------------------------------------
 --Deliverable 3: How many roles will need to be filled as the "silver tsunami" begins to make an impact?
 
---Roles per Staff and Departament (72458 titles)
+--Roles per Staff and Departament (90398 titles)
 
-SELECT DISTINCT ON(urt.emp_no)
-			urt.emp_no,
-			urt.first_name,
-			urt.last_name,
-			urt.title,
-			d.dept_name
-INTO unique_titles_departments			
-FROM unique_retiring_titles as urt
-INNER JOIN dept_emp as de
-ON(urt.emp_no=de.emp_no)
+SELECT DISTINCT ON (rt.emp_no) 
+	rt.emp_no,
+	rt.first_name,
+	rt.last_name,
+	rt.title,
+	d.dept_name
+INTO unique_titles_department
+FROM retirement_titles as rt
+INNER JOIN dep_emp as de
+ON (rt.emp_no = de.emp_no)
 INNER JOIN departments as d
-ON(d.dept_no=de.dept_no)
-ORDER BY urt.emp_no,de.to_date DESC;
+ON (d.dept_no = de.dept_no)
+ORDER BY rt.emp_no, rt.to_date DESC;
 
-SELECT * FROM unique_titles_departments;
+
+SELECT * FROM unique_titles_department;
 
 ---------------------------------------------------------------------------------------
 -- How many roles will need to be fill per title and department?
 
-SELECT utd.dept_name,utd.title,COUNT(utd.title)
-INTO rolls_to_fill
-FROM(SELECT title, dept_name FROM unique_titles_departments) as utd
-GROUP BY utd.dept_name,utd.title
-ORDER BY utd.dept_name DESC;
+SELECT ut.dept_name, ut.title, COUNT(ut.title) 
+INTO rolls_to_fill_T_D
+FROM (SELECT title, dept_name from unique_titles_department) as ut
+GROUP BY ut.dept_name, ut.title
+ORDER BY ut.dept_name DESC;
 
-SELECT * FROM rolls_to_fill;
+select * from rolls_to_fill_T_D;
 ---------------------------------------------------------------------------------------
 -- Qualified staff('Senior Staff','Senior Engineer','Technique Leader','Manager'), retirement-ready to mentor next generation.
 

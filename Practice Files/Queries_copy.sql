@@ -376,6 +376,7 @@ FROM unique_titles as ut
 GROUP BY ut.title
 ORDER BY COUNT DESC;
 
+select * from retiring_titles;
 SELECT ut.emp_no,
 		ut.first_name,
 		ut.last_name,
@@ -418,6 +419,25 @@ select * from retirement_titles;
 
 -- How many roles will need to be filled as the "silver tsunami" begins to make an impact?
 --Roles per Staff and Departament: 
+
+SELECT DISTINCT ON (rt.emp_no) 
+	rt.emp_no,
+	rt.first_name,
+	rt.last_name,
+	rt.title,
+	d.dept_name
+INTO unique_titles_department
+FROM retirement_titles as rt
+INNER JOIN dept_emp as de
+ON (rt.emp_no = de.emp_no)
+INNER JOIN departments as d
+ON (d.dept_no = de.dept_no)
+ORDER BY rt.emp_no, rt.to_date DESC;
+
+
+SELECT * FROM unique_titles_department;
+
+-- Tried for 72458 retiring employees
 SELECT DISTINCT ON(urt.emp_no)
 			urt.emp_no,
 			urt.first_name,
@@ -439,6 +459,16 @@ Drop table unique_titles_departments cascade;
 SELECT * FROM unique_titles_departments;
 
 -- How many roles will need to be fill per title and department?
+
+SELECT ut.dept_name, ut.title, COUNT(ut.title) 
+INTO rolls_to_fill_T_D
+FROM (SELECT title, dept_name from unique_titles_department) as ut
+GROUP BY ut.dept_name, ut.title
+ORDER BY ut.dept_name DESC;
+
+select * from rolls_to_fill_T_D;
+
+-- Tried for 72458 retiring employees
 SELECT utd.dept_name,utd.title,COUNT(utd.title)
 INTO rolls_to_fill
 FROM(SELECT title, dept_name FROM unique_titles_departments) as utd
@@ -449,6 +479,17 @@ drop table rolls_to_fill;
 SELECT * FROM rolls_to_fill;
 
 -- Qualified staff, retirement-ready to mentor next generation.
+SELECT ut.dept_name, ut.title, COUNT(ut.title) 
+INTO qualified_staff_mentors
+FROM (SELECT title, dept_name from unique_titles_department) as ut
+WHERE ut.title IN ('Senior Engineer', 'Senior Staff', 'Technique Leader', 'Manager')
+GROUP BY ut.dept_name, ut.title
+ORDER BY ut.dept_name DESC;
+
+select * from qualified_staff_mentors;
+
+
+-- Tried for 72458 retiring employees
 SELECT utd.dept_name,utd.title,Count(utd.title)
 INTO qualified_staff
 FROM (select dept_name,title from unique_titles_departments) as utd
