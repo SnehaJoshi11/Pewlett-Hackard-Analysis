@@ -1,40 +1,40 @@
 # Pewlett-Hackard-Analysis
-Pewlett-Hackard-Analysis
-# 
 
+## Project Overview
 
-## Overview
-	PH has decided to offer retirement packages and find out which position need to fill in the future.
-	But PH itself is fallen behind t maintain the database.
 ## Purpose
-	With the help of SQL tools (PostgreSQL and PgAdmin4), Company wants to maintain a data and prepare company with
+PH has decided to offer retirement packages and find out which position need to fill in the future.
+But PH itself is fallen behind to maintain the database.
+
+With the help of SQL tools (PostgreSQL and PgAdmin4), Company wants to maintain a data and prepare company with
 several thousand employees for the upcoming "Silver Tsunami".
-	As per the dataset, lot of employees are going to be retired in the future and company needs to prepare with retirement packages, 
+	
+As per the dataset, lot of employees are going to be retired in the future and company needs to prepare with retirement packages, 
 open positions and employee training.
 
-
-	1. Identify the retiring employees by their title.
-	2. Determine the sum of retiring employees grouped by title.
-	3. Identify the employees eligible for participation in the mentorship program.
-	4. Determine the number of roles-to-fill grouped by title and department.
-	5. Determine the number of qualified, retirement-ready employees to mentor the next generation grouped by title and department.
+## Requirements:
+ 1. Identify the retiring employees by their title.
+ 2. Determine the sum of retiring employees grouped by title.
+ 3. Identify the employees eligible for participation in the mentorship program.
+ 4. Determine the number of roles-to-fill grouped by title and department.
+ 5. Determine the number of qualified, retirement-ready employees to mentor the next generation grouped by title and department.
 
 
 
 ## Resources
-	Data Source:
-	- [Six csv files](Data_Source/)
-	   - The data is gathered in six CSV files and the analysis is performed using relational databases.
+Data Source:
+ - [Six csv files](Data_Source/)
+   - The data is gathered in six CSV files and the analysis is performed using relational databases.
 
-	- **QuickDBD** to create quick database design for better visualization,
-	- **PostgreSQL** a database system to load, build and host company’s data, and
-	- **pgAdmin** a GUI, using SQL Language to explore, manipulate and extract the data.
+- **QuickDBD** - To create quick database design for better visualization,
+- **PostgreSQL** - A database system to load, build and host company’s data.
+- **pgAdmin** - A GUI, using SQL Language to explore, manipulate and extract the data.
 
 ## ERD and Schema
  
-      - ERD An entity-relationship diagram (ERD) is crucial to creating a good database design.
- It is used as a high-level logical data model, which is useful in developing a conceptual design for databases.
-      - 
+ERD An entity-relationship diagram (ERD) is crucial to creating a good database design.
+   - It is used as a high-level logical data model, which is useful in developing a conceptual design for databases.
+ 
 
 <p align="center">  
 <img src="Queries/ERD.png" width="40%" height="40%">
@@ -44,34 +44,36 @@ open positions and employee training.
 </p>
       
 ## Schema:
- [schema](Queries/schema.sql) A schema is a blueprint or architecture of how data will look. 
-	It is a description of the actual construction of the database, an all-encompassing term that refers to the collective of tables, 
+- [Schema](Queries/schema.sql) A schema is a blueprint or architecture of how data will look. 
+- It is a description of the actual construction of the database, an all-encompassing term that refers to the collective of tables, 
 	columns, triggers, relationships, key constraints, functions, and procedures. 
-	Schemas are important for designing database management systems (DBMS) or relational database management systems (RDBMS).
+- Schemas are important for designing database management systems (DBMS) or relational database management systems (RDBMS).
 
 
-## Result
+## Results
 
 
 **1.	The list of retiring employees**
 
 -	The table includes employee number, first name, last name, title, from-date and to-date.
 -	The query returns 133,776 rows. 
--	The table displays a list of employees who is going to retire in the next few years.
--	The list is long and extensive but gives us some insights about the query. 
-		Some employees appear more than once due to change of title during their career at Pewlett-Hackard.
+-	The table displays mixed data of employees who is going to retire in the next few years and who left the jobs.
+-	The list is long and extensive and includes duplicate data like some employees appear more than once due to change of title during their career at Pewlett-Hackard.
 <p align="center">  
-<img src="" width="50%" height="50%">
+<img src="  " width="50%" height="50%">
 </p>
 <p align="center">  
 <i>Figure 2: Table with the employee’s data that are retirement-ready</i>
 </p>
 
-To retrieve the data we need to join/merge two tables.'employee as e and title as ti'.
-Based on e.emp_no.e.first_name,e.last_name,ti.title,ti.from_date,ti.to_date.
-We use 'INNER JOIN' title as ti, ON(e.emp_no=ti.emp_no) and filtered with 'birth_date', to find out who is going to retire in few years.
-with where clause(e.birth_date BETWEEN '1952-01-01' AND '1955-12-31').
-  
+<p>
+	
+	To retrieve the data we need to join/merge two tables.'employee as e and title as ti'.
+	- Based on e.emp_no.e.first_name,e.last_name,ti.title,ti.from_date,ti.to_date.
+	- We use 'INNER JOIN' title as ti, ON(e.emp_no=ti.emp_no) and filtered with 'birth_date', to find out who is going to retire in few years.
+	- with where clause(e.birth_date BETWEEN '1952-01-01' AND '1955-12-31').
+	
+ </p> 
 
    
 **2.	The list of retiring employees without duplicates**
@@ -86,9 +88,14 @@ with where clause(e.birth_date BETWEEN '1952-01-01' AND '1955-12-31').
 <i>Figure 3: Table with the employee’s data that are retirement-ready without duplicates</i>
 </p>
 
-To retrieve the unique Retiring employees, We need to use 'DISTINCT' clause 'ON' retiring_emp table with where clause on date (rt.to_date='9999-01-01') to get only retiring employees not the employees who left the company.
-ORDER By clause ON 'emp_no' and 'to_date' to sort the data by descending order.
-	 
+<p>
+	
+	 To retrieve the unique Retiring employees,
+	 - We need to use 'DISTINCT' clause 'ON' retiring_emp table with where clause on date (rt.to_date='9999-01-01') to get only retiring employees not the employees who left the company.
+	 - ORDER By clause ON 'emp_no' and 'to_date' to sort the data by descending order.
+	
+	
+</p>	 
 
 **3.	The number of retiring employees grouped by title**
 
@@ -103,10 +110,14 @@ ORDER By clause ON 'emp_no' and 'to_date' to sort the data by descending order.
 <i>Figure 4: Table with the employee grouped by title</i>
 </p>
 
+<p>
+	
+	
+	To find out retiring employee count, 
+	- we will use 'GROUP BY' clause to group titles from unique title table and sort it for most recent values with'ORDER BY count DESC'
 
-To find out retiring employee count, we will use 'GROUP BY' clause to group titles from unique title table and sort it for most recent values with
-'ORDER BY count DESC'
 
+</p>
    
 **4.	The employees eligible for the mentorship program**
 
@@ -120,13 +131,21 @@ To find out retiring employee count, we will use 'GROUP BY' clause to group titl
 <i>Figure 5: Table with the employee grouped by title</i>
 </p>
 
+<p>
+	
+	
+	To retrieve this data 3 tables needs to be mearged together 'employee,titles,dept_emp',title with 'INNER JOIN'.
+	- Then query filters by birth_date betwwen ('1965-01-01' AND '1965-12-31') and to_date to include only current values.
+	- It is unique data because we used DISTINCT ON(emp_no).	
+	- To ensure most recent valuse we will use 'ORDER BY e.emp_no,ti.from_date DESC'.
 
-To retrieve this data 3 tables needs to be mearged together 'employee,titles,dept_emp' with 'INNER JOIN'.
-then query filters by birth_date betwwen ('1965-01-01' AND '1965-12-31') and to_date to include only current values.
-It is unique data because we used DISTINCT ON(emp_no).
-To ensure most recent valuse we will use 'ORDER BY e.emp_no,ti.from_date DESC'.
+
+</p>
+
 
 ## Summary
+
+
 As the company is preparing for the upcoming "silver tsunami" a good planning is very important, especially when such many the employees are involved.
 Reports above give a good insight about the number of the employees that are about to retire and hold specific title. 
 However, I believe that additional break down per department will be beneficial for the company. 
