@@ -141,7 +141,7 @@ To find out retiring employee count,
 	
 To retrieve this data 3 tables needs to be mearged together 'employee,titles,dept_emp',title with 'INNER JOIN'.
 - Then query filters by `birth_date betwwen ('1965-01-01' AND '1965-12-31')` and `to_date` to include only current values.
-- It is unique data because we used DISTINCT ON(emp_no).	
+- It is unique data because we used `DISTINCT ON(emp_no)`.	
 - To ensure most recent valuse we will use `ORDER BY e.emp_no,ti.from_date DESC`.
 
 
