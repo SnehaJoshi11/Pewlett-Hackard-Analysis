@@ -80,7 +80,7 @@ SELECT * FROM mentorship_eligibilty;
 -----------------------------------------------------------------------------------------
 --Deliverable 3: How many roles will need to be filled as the "silver tsunami" begins to make an impact?
 
---Roles per Staff and Departament (72458 tiles)
+--Roles per Staff and Departament (72458 titles)
 
 SELECT DISTINCT ON(urt.emp_no)
 			urt.emp_no,
