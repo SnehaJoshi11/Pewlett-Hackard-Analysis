@@ -22,7 +22,7 @@ open positions and employee training.
 
 
 ## Resources
-Data Source:
+- **Data Source:**
  - [Six csv files](Data_Source/)
    - The data is gathered in six CSV files and the analysis is performed using relational databases.
 
@@ -68,16 +68,17 @@ ERD An entity-relationship diagram (ERD) is crucial to creating a good database 
 
 <p>
 	
-	To retrieve the data we need to join/merge two tables.`'employee as e and title as ti'`.
-	- Based on `e.emp_no.e.first_name,e.last_name,ti.title,ti.from_date,ti.to_date`.
-	- We use `INNER JOIN title as ti`, `ON(e.emp_no=ti.emp_no)` and filtered with 'birth_date', to find out who is going to retire in few years.
-	- with where clause`(e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')`.
+To retrieve the data we need to join/merge two tables.`'employee as e and title as ti'`.
+- Based on `e.emp_no,e.first_name,e.last_name,ti.title,ti.from_date,ti.to_date`.
+- We use `INNER JOIN title as ti`, `ON(e.emp_no=ti.emp_no)` and filtered with 'birth_date', to find out who is going to retire in few years.
+- With where clause`(e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')`.
 	
- </p> 
+ </p> <br>
 
-   
+## 
+  
 **2.	The list of retiring employees without duplicates**
--	The table includes employee number, first name, last name, title, from-date and to-date.
+-	The table includes employee number, first_name, last_name, title, from_date and to_date.
 -	The query returns 72,458 rows. 
 - 	The table displays a list of employees who are going to retire in the next few years.
 -	In the table each employee is listed only once, by her or his most recent title.
@@ -90,14 +91,16 @@ ERD An entity-relationship diagram (ERD) is crucial to creating a good database 
 
 <p>
 	
-	 To retrieve the unique Retiring employees,
-	 - We need to use `'DISTINCT' clause 'ON'` retiring_emp table with where clause on date `(rt.to_date='9999-01-01')` to get only retiring employees not the employees who left the company.
-	 - `ORDER By clause ON 'emp_no' and 'to_date'` to sort the data by descending order.
+To retrieve the unique Retiring employees,
+- We need to use `'DISTINCT' clause 'ON'` retiring_emp table with where clause on date `(rt.to_date='9999-01-01')` to get only retiring employees not the employees who left the company.
+- `ORDER By clause ON 'emp_no' and 'to_date'` to sort the data by descending order.
 	
 	
 </p>	 
 
-**3.	The number of retiring employees grouped by title**
+##
+
+**3.	The number of retiring employees (72458) grouped by title**
 
 -	The table includes employees titles and their sum. 
 -	The query returns a cohesive table with 7 rows.
@@ -113,12 +116,14 @@ ERD An entity-relationship diagram (ERD) is crucial to creating a good database 
 <p>
 	
 	
-	To find out retiring employee count, 
-	- we will use `GROUP BY` clause to group titles from unique title table and sort it for most recent values with `ORDER BY count DESC`.
+To find out retiring employee count, 
+- We will use `GROUP BY` clause to group titles from unique title table and sort it for most recent values with `ORDER BY count DESC`.
 
 
 </p>
-   
+
+##
+
 **4.	The employees eligible for the mentorship program**
 
 -	The table contains employee number, first name, last name, birth_date, from_date to_date and title. 
@@ -134,10 +139,10 @@ ERD An entity-relationship diagram (ERD) is crucial to creating a good database 
 <p>
 	
 	
-	To retrieve this data 3 tables needs to be mearged together 'employee,titles,dept_emp',title with 'INNER JOIN'.
-	- Then query filters by `birth_date betwwen ('1965-01-01' AND '1965-12-31')` and `to_date` to include only current values.
-	- It is unique data because we used DISTINCT ON(emp_no).	
-	- To ensure most recent valuse we will use `ORDER BY e.emp_no,ti.from_date DESC`.
+To retrieve this data 3 tables needs to be mearged together 'employee,titles,dept_emp',title with 'INNER JOIN'.
+- Then query filters by `birth_date betwwen ('1965-01-01' AND '1965-12-31')` and `to_date` to include only current values.
+- It is unique data because we used DISTINCT ON(emp_no).	
+- To ensure most recent valuse we will use `ORDER BY e.emp_no,ti.from_date DESC`.
 
 
 </p>
@@ -163,15 +168,15 @@ Now we need to concentrate on staff and their respective departments,So that hea
 
 <p>
 	
-	
-	- To retrieve department name information, we can merged additional table `departments` into existing table `retirement_titles` with the `inner join`.
-	- After removing the duplicates, with `DISTINCT ON` command, the table was ready to be used for additional queries.
+- To retrieve department name information, we can merge additional table `departments` into existing table `retirement_titles` with the `inner join`.
+- After removing the duplicates, with `DISTINCT ON` command, the table was ready to be used for additional queries.
 
 	
 </p>
 
+##
 
-***How many roles will need to be filled as the "silver tsunami" begins to make an impact? *** <br>
+***How many roles will need to be filled as the "silver tsunami" begins to make an impact?*** <br>
 
 Here we can have additional query that breaks down how many staff will retire per department. Since every department will be affected in some way this query gives more precise numbers what each department can expect and how many roles will need to be filled.
 
@@ -186,11 +191,13 @@ Here we can have additional query that breaks down how many staff will retire pe
 <p>
 	
 	
-	- With the help of group by dept_name and title we can find out number of rolls need to fill per title and department.
+- With the help of group by dept_name and title we can find out number of rolls need to fill per title and department.
 	
 </p>
 
-***Are there enough qualified, retirement-ready employees in the departments to mentor the next generation of Pewlett-Hackard employees? ***<br>
+##
+
+***Are there enough qualified, retirement-ready employees in the departments to mentor the next generation of Pewlett-Hackard employees?*** <br>
 
 
 To make sure that, there are enough qualified staff for training at Pewlett-Hackard we will run another query with additional filter, that returns only employees on higher positions, assuming that those are qualified as mentors.
@@ -198,16 +205,17 @@ To make sure that, there are enough qualified staff for training at Pewlett-Hack
 The result includes only staff on higher positions.
 
 <p align="center">  
-<img src="PNGs/ExtraQualified_staff_mentors.PNG" width="40%" height="40%">
+<img src="PNGs/ExtraQualified_staff_mentors.png" width="40%" height="40%">
 </p>
 <p align="center">  
 <i>Figure 8: Sum of qualified, retirement-ready employees’ group by title and department</i>
 </p>
 
+
 <p>
 	
 	
-	- We can find out who is qualified and ready to give training for upcoming candidates.
-	- We can retrieve dept_name and count(title) from unique_titles_departments and put condition `WHERE ut.titles IN("Senior_staff","Senior Engineer","Technology Leader","Manager")` and `GROUP BY (dept_name and title)` with descending order.
+- We can find out who is qualified and ready to give training for upcoming candidates.
+- We can retrieve dept_name and count(title) from unique_titles_departments and put condition `WHERE ut.titles IN("Senior_staff","Senior Engineer","Technology Leader","Manager")` and `GROUP BY (dept_name and title)` with descending order.
  
 </p>
