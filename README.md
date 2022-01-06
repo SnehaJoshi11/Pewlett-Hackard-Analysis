@@ -68,10 +68,10 @@ ERD An entity-relationship diagram (ERD) is crucial to creating a good database 
 
 <p>
 	
-	To retrieve the data we need to join/merge two tables.'employee as e and title as ti'.
-	- Based on e.emp_no.e.first_name,e.last_name,ti.title,ti.from_date,ti.to_date.
-	- We use 'INNER JOIN' title as ti, ON(e.emp_no=ti.emp_no) and filtered with 'birth_date', to find out who is going to retire in few years.
-	- with where clause(e.birth_date BETWEEN '1952-01-01' AND '1955-12-31').
+	To retrieve the data we need to join/merge two tables.`'employee as e and title as ti'`.
+	- Based on `e.emp_no.e.first_name,e.last_name,ti.title,ti.from_date,ti.to_date`.
+	- We use `INNER JOIN title as ti`, `ON(e.emp_no=ti.emp_no)` and filtered with 'birth_date', to find out who is going to retire in few years.
+	- with where clause`(e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')`.
 	
  </p> 
 
@@ -91,8 +91,8 @@ ERD An entity-relationship diagram (ERD) is crucial to creating a good database 
 <p>
 	
 	 To retrieve the unique Retiring employees,
-	 - We need to use 'DISTINCT' clause 'ON' retiring_emp table with where clause on date (rt.to_date='9999-01-01') to get only retiring employees not the employees who left the company.
-	 - ORDER By clause ON 'emp_no' and 'to_date' to sort the data by descending order.
+	 - We need to use `'DISTINCT' clause 'ON'` retiring_emp table with where clause on date `(rt.to_date='9999-01-01')` to get only retiring employees not the employees who left the company.
+	 - `ORDER By clause ON 'emp_no' and 'to_date'` to sort the data by descending order.
 	
 	
 </p>	 
@@ -114,7 +114,7 @@ ERD An entity-relationship diagram (ERD) is crucial to creating a good database 
 	
 	
 	To find out retiring employee count, 
-	- we will use 'GROUP BY' clause to group titles from unique title table and sort it for most recent values with'ORDER BY count DESC'
+	- we will use `GROUP BY` clause to group titles from unique title table and sort it for most recent values with `ORDER BY count DESC`.
 
 
 </p>
@@ -135,9 +135,9 @@ ERD An entity-relationship diagram (ERD) is crucial to creating a good database 
 	
 	
 	To retrieve this data 3 tables needs to be mearged together 'employee,titles,dept_emp',title with 'INNER JOIN'.
-	- Then query filters by birth_date betwwen ('1965-01-01' AND '1965-12-31') and to_date to include only current values.
+	- Then query filters by `birth_date betwwen ('1965-01-01' AND '1965-12-31')` and `to_date` to include only current values.
 	- It is unique data because we used DISTINCT ON(emp_no).	
-	- To ensure most recent valuse we will use 'ORDER BY e.emp_no,ti.from_date DESC'.
+	- To ensure most recent valuse we will use `ORDER BY e.emp_no,ti.from_date DESC`.
 
 
 </p>
@@ -146,57 +146,68 @@ ERD An entity-relationship diagram (ERD) is crucial to creating a good database 
 ## Summary
 
 
-As the company is preparing for the upcoming "silver tsunami" a good planning is very important, especially when such many the employees are involved.
+As the company is preparing for the upcoming "silver tsunami" , A good planning is very important, especially when too many employees are involved.
+
 Reports above give a good insight about the number of the employees that are about to retire and hold specific title. 
-However, I believe that additional break down per department will be beneficial for the company. 
-In this case headquarters can see what to expect in each department separately. 
-To retrieve department name information, I merged additional table `departments` into existing table `retirement_titles` with the `inner join`.
-After removing the duplicates, with `DISTINCT ON` command, the table was ready to be used for additional queries.
+
+Now we need to concentrate on staff and their respective departments,So that headquarters can see what to expect in each department separately. 
+
+
 <p align="center">  
-<img src="" width="60%" height="60%">
+<img src="/PNGs/ExtraRollsPer_Staff_and_Department.png" width="60%" height="60%">
 </p>
 <p align="center">  
 <i>Figure 6: Table with retirement-ready employee’s data with added department name</i>
 </p>
 
 
+<p>
+	
+	
+	- To retrieve department name information, we can merged additional table `departments` into existing table `retirement_titles` with the `inner join`.
+	- After removing the duplicates, with `DISTINCT ON` command, the table was ready to be used for additional queries.
 
-***How many roles will need to be filled as the "silver tsunami" begins to make an impact? ***<br>
+	
+</p>
 
 
-The table **retirement titles** contains all the information about the employees that are about to retire in the next four years. 
-To get the number of positions that will be open in next four years I ran additional query that breaks down how many staff will retire per department. 
-Since every department will be affected in some way this query gives more precise numbers what each department can expect and how many roles
-will need to be filled.
+***How many roles will need to be filled as the "silver tsunami" begins to make an impact? *** <br>
+
+Here we can have additional query that breaks down how many staff will retire per department. Since every department will be affected in some way this query gives more precise numbers what each department can expect and how many roles will need to be filled.
 
 <p align="center">  
-<img src="" width="40%" height="40%">
+<img src="/PNGs/ExtraRollsPer_Title_and_Department.png" width="40%" height="40%">
 </p>
 <p align="center">  
 <i>Figure 7: Sum of retirement-ready employees’ group by title and department. </i> 
 </p>
 
-	Here we used two tables retirement_titles as rt and dept_emp to retrieve rt. emp_no ,rt. first_name, rt.last _name , d. dept _name columns and create new table 'unique _retirement_ dept'. INNER JOIN used to merge two tables on rt. emp_no=de.emp_no. We  used order by clause on rt.emp_no and rt. to_date DESC to get most recent data.
-	 Also to find out how many rolls need to fill per title and department. We can  group by dept_name and title from unique_titles table and count titles to find out how many titles are there with each department name here.
 
+<p>
+	
+	
+	- With the help of group by dept_name and title we can find out number of rolls need to fill per title and department.
+	
+</p>
 
 ***Are there enough qualified, retirement-ready employees in the departments to mentor the next generation of Pewlett-Hackard employees? ***<br>
 
 
-To ensure that are enough qualified staff for training at Pewlett-Hackard I ran a query with additional filter,
- that returns only employees on higher positions, assuming that those are qualified as mentors.
-With the command ` WHERE ut.title IN ('Senior Engineer', 'Senior Staff', 'Technique Leader', 'Manager') ` the results include only 
-staff on higher positions. From the table we can see how many qualified employees are in each department to train next generation. 
+To make sure that, there are enough qualified staff for training at Pewlett-Hackard we will run another query with additional filter, that returns only employees on higher positions, assuming that those are qualified as mentors.
+
+The result includes only staff on higher positions.
 
 <p align="center">  
-<img src="Graphics/Extra_QualifiedStaff.PNG" width="40%" height="40%">
+<img src="PNGs/ExtraQualified_staff_mentors.PNG" width="40%" height="40%">
 </p>
 <p align="center">  
 <i>Figure 8: Sum of qualified, retirement-ready employees’ group by title and department</i>
 </p>
 
-
-We can find out who is qualified and ready to give training for upcoming candidates.
-We can retrieve dept_name and count(title) from unique_titles_departments and
-put condition WHERE ut.titles IN("Senior_staff","Senior Engineer","Technology Leader","Manager") and GROUP BY (dept_name and title) with descending order.
+<p>
+	
+	
+	- We can find out who is qualified and ready to give training for upcoming candidates.
+	- We can retrieve dept_name and count(title) from unique_titles_departments and put condition `WHERE ut.titles IN("Senior_staff","Senior Engineer","Technology Leader","Manager")` and `GROUP BY (dept_name and title)` with descending order.
  
+</p>
