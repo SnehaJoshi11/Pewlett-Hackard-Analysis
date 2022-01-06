@@ -60,7 +60,7 @@ ERD An entity-relationship diagram (ERD) is crucial to creating a good database 
 -	The table displays mixed data of employees who is going to retire in the next few years and who left the jobs.
 -	The list is long and extensive and includes duplicate data like some employees appear more than once due to change of title during their career at Pewlett-Hackard.
 <p align="center">  
-<img src="  " width="50%" height="50%">
+<img src="PNGs/RetiringEmpTitles_duplicates.png" width="50%" height="50%">
 </p>
 <p align="center">  
 <i>Figure 2: Table with the employee’s data that are retirement-ready</i>
