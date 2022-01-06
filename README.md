@@ -82,7 +82,7 @@ ERD An entity-relationship diagram (ERD) is crucial to creating a good database 
 - 	The table displays a list of employees who are going to retire in the next few years.
 -	In the table each employee is listed only once, by her or his most recent title.
 <p align="center">  
-<img src="" width="50%" height="50%">
+<img src="PNGs/unique_retiring_titles_72458.png" width="50%" height="50%">
 </p>
 <p align="center">  
 <i>Figure 3: Table with the employee’s data that are retirement-ready without duplicates</i>
@@ -104,7 +104,7 @@ ERD An entity-relationship diagram (ERD) is crucial to creating a good database 
 -	From this table we can quickly see how many employees with certain title will retire in the next few years.
 
 <p align="center">  
-<img src="" width="30%" height="30%">
+<img src="PNGs/retirement_titles-72458.png" width="30%" height="30%">
 </p>
 <p align="center">  
 <i>Figure 4: Table with the employee grouped by title</i>
@@ -125,7 +125,7 @@ ERD An entity-relationship diagram (ERD) is crucial to creating a good database 
 -	The query returns 1,549 rows.
 - 	The table displays a list of employees who is eligible for the mentorship program.
 <p align="center">  
-<img src="" width="50%" height="50%">
+<img src="PNGs/mentorship_eligibility.png" width="50%" height="50%">
 </p>
 <p align="center">  
 <i>Figure 5: Table with the employee grouped by title</i>
