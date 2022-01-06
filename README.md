@@ -37,7 +37,7 @@ ERD An entity-relationship diagram (ERD) is crucial to creating a good database 
  
 
 <p align="center">  
-<img src="Queries/ERD.png" width="40%" height="40%">
+<img src="Queries/ERD_EmployeeDB.png" width="50%" height="50%">
 </p>
 <p align="center">  
 <i>Figure 1: ERD</i>
