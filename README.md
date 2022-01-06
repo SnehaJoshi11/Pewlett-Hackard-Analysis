@@ -23,10 +23,10 @@ open positions and employee training.
 
 ## Resources
 - **Data Source:**
- - [Six csv files](Data_Source/)
-   - The data is gathered in six CSV files and the analysis is performed using relational databases.
+  - [Six csv files](Data_Source/)
+    - The data is gathered in six CSV files and the analysis is performed using relational databases.
 
-- **QuickDBD** - To create quick database design for better visualization,
+- **QuickDBD** - To create quick database design for better visualization.
 - **PostgreSQL** - A database system to load, build and host company’s data.
 - **pgAdmin** - A GUI, using SQL Language to explore, manipulate and extract the data.
 
