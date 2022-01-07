@@ -93,7 +93,7 @@ ERD An entity-relationship diagram (ERD) is crucial to creating a good database 
 
 <p>
 	
-To retrieve the unique Retiring employees,
+- To retrieve the unique Retiring employees,
 - We need to use `'DISTINCT' clause 'ON'` retiring_emp table with where clause on date `(rt.to_date='9999-01-01')` to get only retiring employees not the employees who left the company.
 - `ORDER By clause ON 'emp_no' and 'to_date'` to sort the data by descending order.
 	
@@ -158,6 +158,7 @@ As the company is preparing for the upcoming "silver tsunami" , A good planning 
 Reports above give a good insight about the number of the employees that are about to retire and hold specific title. 
 
 Now we need to concentrate on staff and their respective departments,So that headquarters can see what to expect in each department separately. 
+Here we used `retirement_titles`,`dept_emp`,`departments` table to retrive the Roles per Staff and Departament which has 90398 rows in it
 
 
 <p align="center">  
@@ -170,8 +171,9 @@ Now we need to concentrate on staff and their respective departments,So that hea
 
 <p>
 	
-- To retrieve department name information, we can merge additional table `departments` into existing table `retirement_titles` with the `inner join`.
+- To retrieve department name information, we can join/merge additional table `departments` into existing table `retirement_titles` with the `inner join`.
 - After removing the duplicates, with `DISTINCT ON` command, the table was ready to be used for additional queries.
+- `order by  rt.emp_no, rt.to_date DESC` ,which returns most recent values.
 
 	
 </p>
@@ -180,7 +182,11 @@ Now we need to concentrate on staff and their respective departments,So that hea
 
 ***How many roles will need to be filled as the "silver tsunami" begins to make an impact?*** <br>
 
-Here we can have additional query that breaks down how many staff will retire per department. Since every department will be affected in some way this query gives more precise numbers what each department can expect and how many roles will need to be filled.
+Here we can have additional query that breaks down how many staff will retire per department. 
+
+Since every department will be affected in some way this query gives more precise numbers what each department can expect and how many roles will need to be filled.
+
+Here we are retriving roles that need to be fill per title and department.
 
 <p align="center">  
 <img src="/PNGs/ExtraRollsPer_Title_and_Department.png" width="40%" height="40%">
