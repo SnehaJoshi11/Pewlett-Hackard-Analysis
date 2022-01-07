@@ -44,10 +44,11 @@ ERD An entity-relationship diagram (ERD) is crucial to creating a good database 
 </p>
       
 ## Schema:
-- [Schema](Queries/schema.sql) A schema is a blueprint or architecture of how data will look. 
-- It is a description of the actual construction of the database, an all-encompassing term that refers to the collective of tables, 
-	columns, triggers, relationships, key constraints, functions, and procedures. 
+
+- [Schema](Queries/schema.sql) A schema is a collection of database objects like tables, triggers, stored procedures, etc.
+- Database may have one or more schema. 
 - Schemas are important for designing database management systems (DBMS) or relational database management systems (RDBMS).
+- Schema is of three types: Physical schema, logical schema and view schema.
 
 
 ## Results
