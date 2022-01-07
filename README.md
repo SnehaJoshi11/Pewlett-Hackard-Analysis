@@ -23,7 +23,7 @@ open positions and employee training.
 
 ## Resources
 - **Data Source:**
-  - [Six csv files](Data_Source/)
+  - [CSV files](Data_Source/)
     - The data is gathered in six CSV files and the analysis is performed using relational databases.
 
 - **QuickDBD** - To create quick database design for better visualization.
@@ -80,6 +80,7 @@ ERD An entity-relationship diagram (ERD) is crucial to creating a good database 
   
 **2.	The list of retiring employees without duplicates**
 -	The table includes employee number, first_name, last_name, title, from_date and to_date.
+-	We removed duplicate data using where clause on date `(rt.to_date='9999-01-01')`
 -	The query returns 72,458 rows. 
 - 	The table displays a list of employees who are going to retire in the next few years.
 -	In the table each employee is listed only once, by her or his most recent title.
