@@ -69,9 +69,9 @@ ERD An entity-relationship diagram (ERD) is crucial to creating a good database 
 
 <p>
 	
-To retrieve the data we need to join/merge two tables.`'employee as e and title as ti'`.
+- To retrieve the data we need to join/merge two tables.`'employee as e and title as ti'`.
 - Based on `e.emp_no,e.first_name,e.last_name,ti.title,ti.from_date,ti.to_date`.
-- We use `INNER JOIN title as ti`, `ON(e.emp_no=ti.emp_no)` and filtered with 'birth_date', to find out who is going to retire in few years.
+- We use `INNER JOIN title as ti`, `ON(e.emp_no=ti.emp_no)` and filtered with `birth_date`, to find out who is going to retire in few years.
 - With where clause`(e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')`.
 	
  </p>
@@ -117,7 +117,7 @@ To retrieve the unique Retiring employees,
 <p>
 	
 	
-To find out retiring employee count, 
+- To find out retiring employee count, 
 - We will use `GROUP BY` clause to group titles from unique title table and sort it for most recent values with `ORDER BY count DESC`.
 
 
@@ -140,7 +140,7 @@ To find out retiring employee count,
 <p>
 	
 	
-To retrieve this data 3 tables needs to be mearged together 'employee,titles,dept_emp',title with 'INNER JOIN'.
+- To retrieve this data 3 tables needs to be mearged together `employee,titles,dept_emp`,title with `INNER JOIN`.
 - Then query filters by `birth_date betwwen ('1965-01-01' AND '1965-12-31')` and `to_date` to include only current values.
 - It is unique data because we used `DISTINCT ON(emp_no)`.	
 - To ensure most recent valuse we will use `ORDER BY e.emp_no,ti.from_date DESC`.
