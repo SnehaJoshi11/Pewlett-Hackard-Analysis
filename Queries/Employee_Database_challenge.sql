@@ -20,7 +20,21 @@ ORDER BY e.emp_no;
 SELECT * FROM retirement_titles;
 
 --------------------------------------------------------------------------------------
--- The number of employees retiring by Title(No Duplicates)
+
+
+-- The Number of Retiring Employees by Title (90398).
+SELECT DISTINCT ON (rt.emp_no) 
+	rt.emp_no,
+	rt.first_name,
+	rt.last_name,
+	rt.title
+INTO unique_titles
+FROM retirement_titles as rt
+ORDER BY rt.emp_no, rt.to_date DESC;
+
+
+
+-- The number of employees retiring by Title(WHERE rt.to_date='9999-01-01')
 -- Use Dictinct with Orderby to remove duplicate rows
 
 SELECT DISTINCT ON (rt.emp_no)
@@ -28,12 +42,12 @@ SELECT DISTINCT ON (rt.emp_no)
 		rt.first_name,
 		rt.last_name,
 		rt.title
-INTO unique_titles
+INTO unique_Rtitles
 FROM retirement_titles as rt
 WHERE rt.to_date='9999-01-01'
 ORDER BY rt.emp_no,rt.to_date DESC;
 
-SELECT * FROM unique_titles;
+SELECT * FROM unique_Rtitles;
 --------------------------------------------------------------------------------------
 
 -- The number of employees by their most recent job title who are about to retire.
@@ -45,13 +59,13 @@ ORDER BY COUNT DESC;
 
 SELECT * FROM retiring_titles;
 
--- Unique retiring titles
+-- Unique retiring titles(72458)
 SELECT ut.emp_no,
 		ut.first_name,
 		ut.last_name,
 		ut.title
 INTO unique_retiring_titles
-FROM unique_titles as ut
+FROM unique_Rtitles as ut
 -- GROUP BY ut.emp_no, ut.title
 ORDER BY ut.emp_no,ut.title desc ;
 --------------------------------------------------------------------------------------
